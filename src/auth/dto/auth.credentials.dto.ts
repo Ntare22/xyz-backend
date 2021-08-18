@@ -1,7 +1,16 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Matches, IsEmail, IsString, MaxLength, MinLength, IsOptional, IsNotEmpty, IsPhoneNumber } from 'class-validator';
 
+import { 
+    Matches, 
+    IsEmail, 
+    IsString, 
+    MaxLength, 
+    MinLength, 
+    IsOptional, 
+    IsNotEmpty, 
+    IsPhoneNumber } from 'class-validator';
 export class AuthCredentialsDto {
+  
     @ApiProperty()
     @IsString()
     @MinLength(3)
@@ -36,4 +45,27 @@ export class AuthCredentialsDto {
     })
     password: string;
 
+    @ApiProperty()
+    createdAt!: Date;
+
+    @ApiProperty()
+    updatedAt!: Date;
+
+}
+
+// Login
+
+export class AuthSignInCredentialsDto {
+    @ApiProperty()
+    @IsEmail()
+    email: string;
+
+    @ApiProperty()
+    @IsString()
+    @MinLength(8)
+    @MaxLength(32)
+    @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
+        message: 'password too weak'
+    })
+    password: string;
 }

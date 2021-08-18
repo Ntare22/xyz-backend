@@ -4,6 +4,7 @@ import { User, UserDocument } from './schema/user.schema';
 import { Model } from 'mongoose';
 import { EntityRepository } from '../db/entity.repository';
 
+
 @Injectable()
 export class UsersRepository extends EntityRepository<UserDocument> {
     constructor(@InjectModel(User.name) userModel: Model<UserDocument>) {
