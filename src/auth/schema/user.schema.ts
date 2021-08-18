@@ -37,3 +37,8 @@ export class User {
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
+UserSchema.virtual('StandardUser', {
+    ref: 'StandardUser',
+    localField: '_id',
+    foreignField: 'ownerId',
+});
