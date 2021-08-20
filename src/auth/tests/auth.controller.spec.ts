@@ -25,7 +25,7 @@ describe('AuthController', () => {
 
   describe('signUp', () => {
     describe('when getUser is called', () => {
-      let user: User;
+      let user: any;
 
       beforeEach(async () => {
         user = await controller.signUp(userStub());

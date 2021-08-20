@@ -1,4 +1,5 @@
-import { Body, Controller, Post, UseFilters } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, UseFilters, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { MongoExceptionFilter } from '../helpers/error.handling';
 import { AuthService } from './auth.service';
@@ -13,8 +14,18 @@ export class AuthController {
     @ApiBody({ type: AuthCredentialsDto })
     @Post('/signup')
     @UseFilters(MongoExceptionFilter)
-    signUp(@Body() authCredentialsDto: AuthCredentialsDto): Promise<User> {
+    signUp(@Body() authCredentialsDto: AuthCredentialsDto): Promise<string> {
         return this.authService.signUp(authCredentialsDto);
+    }
+
+    @Get('/google')
+    @UseGuards(AuthGuard('google'))
+    async googleAuth(@Req() req) {}
+
+    @Get('/google/redirect')
+    @UseGuards(AuthGuard('google'))
+    googleAuthRedirect(@Req() req) {
+        return this.authService.googleLogin(req)
     }
 
 }
