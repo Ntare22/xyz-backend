@@ -42,24 +42,15 @@ export class RegUserService {
                 address,
                 password: hashedPassword
             };
-
         
-
-        return this.normalUserRepositoty.findOneAndUpdate(ownerId, {$push: { normalUsers: newUser }});
+        const user = await this.normalUserRepositoty.findOne({ "normalUsers.email": email })
+       
+        if (!user) {
+            return this.normalUserRepositoty.findOneAndUpdate(ownerId, {$push: { normalUsers: newUser }});
+        }
+        else {
+            const errorMessage: any = {"error": "User already exits!"}
+            return errorMessage;
+        }
     }
 }
-
-
-
-// {
-//     "firstName": "nankim",
-//     "lastName": "nk",
-//     "gender": "Female",
-//     "birthDate": "2019-08-19",
-//     "email": "nankim@test.com",
-//     "phoneNumber": "+250782015589",
-//     "address": "Rwanda/Kigali",
-//     "password": "123Qwert@",
-//     "createdAt": "2021-08-19T19:16:24.118Z",
-//     "updatedAt": "2021-08-19T19:16:24.118Z"
-//   }

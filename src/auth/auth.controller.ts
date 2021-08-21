@@ -31,8 +31,6 @@ export class AuthController {
         return this.authService.signIn(requestBody);
     }
 
-    
-
     @ApiTags('auth')
     @UseGuards(JwtAuthGuard)
     @Get('users')
