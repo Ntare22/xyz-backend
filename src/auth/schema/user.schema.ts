@@ -14,13 +14,13 @@ export class User {
     @Prop()
     lastName: string;
 
-    @Prop({ unique: true })
+    @Prop()
     email: string;
 
     @Prop({ unique: true })
     nidNumber: string;
 
-    @Prop({ unique: true })
+    @Prop()
     phoneNumber: string;
     
     @Prop()
@@ -31,6 +31,9 @@ export class User {
 
     @Prop([String])
     companies: string[];
+
+    @Prop()
+    verifiedEmail: boolean;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

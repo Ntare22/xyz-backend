@@ -11,7 +11,8 @@ export const userStub = (): User => {
         nidNumber: '1234567890123456',
         phoneNumber: '12343524',
         password: 'ntad#r4hfasNds',
-        role: UserRoles.OWNER
+        role: UserRoles.OWNER,
+        verifiedEmail: true,
     }
 }
 
