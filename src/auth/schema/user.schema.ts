@@ -1,12 +1,13 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
+import { NormalUser } from 'src/common/users/schema/users.schema';
 import { UserRoles } from '../user.roles.enum';
 
 export type UserDocument = User & Document;
-@Schema()
+@Schema({ timestamps: true })
 export class User {
-    @Prop()
-    id: string;
+    @Prop({ type: Types.ObjectId })
+    id: Types.ObjectId;
 
     @Prop()
     firstName: string;
@@ -32,13 +33,17 @@ export class User {
     @Prop([String])
     companies: string[];
 
+    // @Prop({type: [Types.ObjectId], ref: NormalUser.name})
+    @Prop([{}])
+    normalUsers!: NormalUser[];
+
     @Prop()
     verifiedEmail: boolean;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
-UserSchema.virtual('StandardUser', {
-    ref: 'StandardUser',
+UserSchema.virtual('NormalUser', {
+    ref: 'NormalUser',
     localField: '_id',
     foreignField: 'ownerId',
 });

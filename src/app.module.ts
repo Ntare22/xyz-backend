@@ -4,6 +4,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { configValidationSchema } from './configuration/config.schema';
 import { AuthModule} from './auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { RegUserModule } from './common/users/users.module';
 
 @Module({
   imports: [
@@ -19,11 +20,12 @@ import { MongooseModule } from '@nestjs/mongoose';
           useCreateIndex: true,
           useUnifiedTopology: true,
           useNewUrlParser: true,
+          useFindAndModify: false,
         }
       }
     }),
     AuthModule,
-  
+    RegUserModule
   ],
   controllers: [],
   providers: [EnvConfigurationService],
