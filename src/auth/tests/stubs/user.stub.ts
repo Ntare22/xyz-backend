@@ -12,7 +12,7 @@ export const userStub = (): User => {
         phoneNumber: '12343524',
         password: 'ntad#r4hfasNds',
         role: UserRoles.OWNER,
-        verifiedEmail: true
+        verifiedEmail: true,
     }
 }
 

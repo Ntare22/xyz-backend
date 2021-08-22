@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { EnvConfigurationService } from './configuration/envconfiguration.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { configValidationSchema } from './configuration/config.schema';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule} from './auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
@@ -23,6 +23,7 @@ import { MongooseModule } from '@nestjs/mongoose';
       }
     }),
     AuthModule,
+  
   ],
   controllers: [],
   providers: [EnvConfigurationService],
