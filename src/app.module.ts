@@ -4,7 +4,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { configValidationSchema } from './configuration/config.schema';
 import { AuthModule} from './auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
-import { RegUserModule } from './common/reg-users/reg-users.module';
+import { RegUserModule } from './common/users/users.module';
 
 @Module({
   imports: [

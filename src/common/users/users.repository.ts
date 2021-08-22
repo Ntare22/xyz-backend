@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 
-import { NormalUser, NormalUserDocument } from "./schema/reg-users.schema";
+import { NormalUser, NormalUserDocument } from "./schema/users.schema";
 import { EntityRepository } from "src/db/entity.repository";
 
 @Injectable()
