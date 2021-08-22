@@ -1,3 +1,4 @@
+
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { JwtModule } from '@nestjs/jwt';
@@ -7,6 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { User, UserSchema } from './schema/user.schema';
+import { GoogleStrategy } from 'src/helpers/google.strategy';
 import { LocalStrategy } from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt-auth.strategy';
 
@@ -22,7 +24,7 @@ import { JwtStrategy } from './strategies/jwt-auth.strategy';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, LocalStrategy, JwtStrategy],
+  providers: [AuthService, LocalStrategy, JwtStrategy, GoogleStrategy],
   exports:[AuthService]
 })
 export class AuthModule {}
