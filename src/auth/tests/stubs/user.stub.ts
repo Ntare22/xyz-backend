@@ -1,10 +1,13 @@
 import { UserRoles } from '../../user.roles.enum';
 import { User } from '../../schema/user.schema';
+import { Types } from 'mongoose';
+
+const obejctId: any = Types.ObjectId;
 
 export const userStub = (): User => {
     return {
         companies: [],
-        id: 'dfadadfwefadf',
+        id: obejctId,
         firstName: 'Jim',
         lastName: 'Ntare',
         email: 'jim@gmail.com',
@@ -12,7 +15,11 @@ export const userStub = (): User => {
         phoneNumber: '12343524',
         password: 'ntad#r4hfasNds',
         role: UserRoles.OWNER,
+<<<<<<< HEAD
         verifiedEmail: true,
+=======
+        normalUsers: []
+>>>>>>> 9343864 (Checking user existence)
     }
 }
 
