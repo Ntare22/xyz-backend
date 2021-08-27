@@ -3,17 +3,20 @@ import { InjectModel } from "@nestjs/mongoose";
 import { v4 as uuid } from 'uuid';
 import * as bcrypt from 'bcrypt';
 import { NormalUser, NormalUserDocument } from "./schema/reg-users.schema";
-import { NormalUserRepository } from "./reg-users.repository";
+import { CompanyRepository, NormalUserRepository } from "./register.repository";
 import { RegUserCredentialsDto } from "./dto/reg-users.credentials.dto";
 import { User } from "src/auth/schema/user.schema";
 import { FilterQuery } from "mongoose";
+import { RegCompanyCredentialsDto } from "./dto/reg-compamy";
+import { RegCompany } from "./schema/reg-company.schema";
 
 
 @Injectable()
-export class RegUserService {
+export class RegisterServices {
     constructor(
         @InjectModel(User.name)
         private normalUserRepositoty: NormalUserRepository,
+        private companyRepository: CompanyRepository,
     ){}
 
     async registerUser(ownerId: RegUserCredentialsDto, regUserCredentialsDto: RegUserCredentialsDto): Promise<NormalUser> {
@@ -50,6 +53,40 @@ export class RegUserService {
         }
         else {
             const errorMessage: any = {"error": "User already exits!"}
+            return errorMessage;
+        }
+    }
+
+    async registerCompany(ownerId: RegCompanyCredentialsDto, regCompanyCredentialsDto:RegCompanyCredentialsDto): Promise<RegCompany> {
+        const defaultPwd = '123Qwert@'
+        const {
+            compyName,
+            country,
+            state,
+            city,
+            street,
+            email,
+            phoneNumber,
+        } = regCompanyCredentialsDto;
+
+        const newCompany: any = {
+                id: uuid(),
+                compyName,
+                country,
+                state,
+                city,
+                street,
+                email,
+                phoneNumber,
+            };
+        
+        const company = await this.companyRepository.findOne({ "company.email": email })
+       
+        if (!company) {
+            return this.companyRepository.findOneAndUpdate(ownerId, {$push: { company: newCompany }});
+        }
+        else {
+            const errorMessage: any = {"error": "Company already exits!"}
             return errorMessage;
         }
     }

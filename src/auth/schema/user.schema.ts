@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
+import { RegCompany } from 'src/common/reg-users/schema/reg-company.schema';
 import { NormalUser } from 'src/common/reg-users/schema/reg-users.schema';
 import { UserRoles } from '../user.roles.enum';
 
@@ -33,15 +34,15 @@ export class User {
     @Prop([String])
     companies: string[];
 
-<<<<<<< HEAD
     @Prop()
     verifiedEmail: boolean;
-=======
-    // @Prop({type: [Types.ObjectId], ref: NormalUser.name})
+   
     @Prop([{}])
     normalUsers!: NormalUser[];
 
->>>>>>> 9343864 (Checking user existence)
+    @Prop([{}])
+    company!: RegCompany[];
+
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
