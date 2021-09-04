@@ -6,7 +6,6 @@ const obejctId: any = Types.ObjectId;
 
 export const userStub = (): User => {
     return {
-        companies: [],
         id: obejctId,
         firstName: 'Jim',
         lastName: 'Ntare',
@@ -15,11 +14,10 @@ export const userStub = (): User => {
         phoneNumber: '12343524',
         password: 'ntad#r4hfasNds',
         role: UserRoles.OWNER,
-<<<<<<< HEAD
+        companies: [],
         verifiedEmail: true,
-=======
-        normalUsers: []
->>>>>>> 9343864 (Checking user existence)
+        normalUsers: [],
+        company: []
     }
 }
 
