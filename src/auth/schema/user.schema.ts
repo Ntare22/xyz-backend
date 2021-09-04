@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
-import { RegCompany } from 'src/common/reg-users/schema/reg-company.schema';
-import { NormalUser } from 'src/common/reg-users/schema/reg-users.schema';
+import { RegCompany } from 'src/common/registration/schema/reg-company.schema';
+import { NormalUser } from 'src/common/registration/schema/reg-users.schema';
 import { UserRoles } from '../user.roles.enum';
 
 export type UserDocument = User & Document;

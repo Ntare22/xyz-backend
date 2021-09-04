@@ -21,7 +21,7 @@ export class RegCompanyCredentialsDto {
     @ApiProperty()
     @IsString()
     @MaxLength(10)
-    contry: string;
+    country: string;
 
     @ApiProperty()
     @IsString()
